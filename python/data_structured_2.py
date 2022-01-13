@@ -43,16 +43,25 @@ def favorit(data_buku):
 def laporan_stok(data_total, data_buku):
 	# inisialisasi var result yang di gunakan untuk menyimpan hasil
 	result = ""
+	# inisialisasi var end_result yang akan menyimpan data buku yang harus di tambah
+	end_result = ""
 
 	# melooping semua nama buku untuk di cari sisa buku yang masih belum di pinjam
 	for book in list(data_total.keys()):
 		sisa = data_total[book]-data_buku[book]
 		if sisa < 1:
 			sisa = "Telah habis"
+			end_result+=f"{book}, "
 		else:
 			sisa = f"Tersisa {sisa} buku"
 
 		result+=f"Buku dengan ISBN {book} {sisa}\n"
+
+	# menambahkan teks buku yang perlu di tambahkan
+	if len(end_result) > 0:
+		result+=f"\nBuku yang harus ditambah adalah buku dengan ISBN ({end_result[:-2]})"
+	else:
+		result+=f"\nTidak ada buku yang perlu di tambahkan, semua stok buku masih tersedia"
 
 	# mengembalikan result.
 	return result
