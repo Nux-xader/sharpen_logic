@@ -2,7 +2,7 @@ import json
 
 def main(dict_a:dict, dict_b:dict):
 	a, b = set(dict_a.items()), set(dict_b.items())
-	return {"dict_a": tuple(a-b), "dict_b": tuple(b-a)}
+	return {"dict_a": tuple([{i[0]: i[1]} for i in a-b]), "dict_b": tuple([{i[0]: i[1]} for i in b-a])}
 
 dict_a = {
 	"foo": "111", 
