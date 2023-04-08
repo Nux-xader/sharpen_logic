@@ -1,15 +1,5 @@
 def main(count_subtask, list_obj):
-	result = []
-	subres = []
-	for x, y in enumerate(list_obj):
-		subres.append(y)
-		if (x+1)%count_subtask == 0:
-			result.append(subres)
-			subres = []
-	if len(subres) > 0:
-		result.append(subres)
-
-	return result
+	return list(map(lambda x: list_obj[x:x+count_subtask], range(0, len(list_obj), count_subtask)))
 
 # sample to use
 if __name__ == '__main__':
